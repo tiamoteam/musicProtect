@@ -1,6 +1,7 @@
 package com.newer.mymusic.controller;
 
 import com.newer.mymusic.domain.Personage;
+
 import com.newer.mymusic.service.PersonageService;
 import com.newer.mymusic.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 public class PersonageController {
@@ -20,17 +20,17 @@ public class PersonageController {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
-
-        Personage a = personageService.getpersonage(UserName,Userpwd);
+    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("pwd")String pwd){
+        int msg = 0;
+        Personage a = personageService.getpersonage(aname,pwd);
 
             if (a != null ) {
-                String token = jwtTokenUtil.createJwt(UserName);
+                String token = jwtTokenUtil.createJwt(aname);
                 System.out.println(token);
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
         else{
-            return new ResponseEntity<>(a,HttpStatus.OK);
+            return new ResponseEntity<>(msg,HttpStatus.OK);
         }
     }
 

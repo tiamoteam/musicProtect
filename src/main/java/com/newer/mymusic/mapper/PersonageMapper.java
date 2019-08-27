@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 public interface PersonageMapper {
 
     //登录
-    @Select("select *from  Personage where UserName=#{UserName} and Userpwd=#{Userpwd}")
+    @Select("select *from  personage where UserName=#{UserName} and Userpwd=#{Userpwd}")
     public Personage getpersonage(@Param("UserName") String UserName, @Param("Userpwd") String Userpwd);
 
 
      //注册
-    @Insert("insert into Personage(UserName,Userpwd,email) value(#{UserName},#{Userpwd},#{email})")
+    @Insert("insert into personage(UserName,Userpwd,email) value(#{UserName},#{Userpwd},#{email})")
     public int addPersonage(Personage p);
 
 }

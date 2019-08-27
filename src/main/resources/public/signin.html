@@ -16,8 +16,7 @@
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
     <script src="js/ie/excanvas.js"></script>
-    <script src="js/ie/jwt.js"></script>
-   <![endif]-->
+  <![endif]-->
 </head>
 <body class="bg-info dker">
   <section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
@@ -37,7 +36,8 @@
             <p id="p2" style="color:red"></p>
           </div>
           <button type="button" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"  id="btnLogin"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
-       <div class="line line-dashed"></div>
+          <div class="text-center m-t m-b"><a href="#"><small>忘记密码?</small></a></div>
+          <div class="line line-dashed"></div>
           <p class="text-muted text-center"><small>注册账户?</small></p>
           <a href="signup.html" class="btn btn-lg btn-info btn-block rounded">申请账户</a>
         </form>
@@ -57,8 +57,7 @@
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
   <!-- App -->
-  <script src="js/app.js"></script>
-  <script src="js/jwt.js"></script>
+  <script src="js/app.js"></script>  
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/app.plugin.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
@@ -71,22 +70,21 @@
     $(()=>{
 
         $("#btnLogin").click(()=>{
-            var UserName=$("#aname").val();
-            var Userpwd=$("#pwd").val();
-            console.log(UserName);
-            console.log(Userpwd);
-            if (!UserName){
+            var aname=$("#aname").val();
+            var pwd=$("#pwd").val();
+
+            if (!aname){
                 $("#p1").text("用户名不能为空")
                 return;
             }
-            if (!Userpwd){
+            if (!pwd){
                 $("#p2").text("密码不能为空")
                 return;
             }
             $.ajax({
                 type:"post",
                 url:"login",
-                data:{UserName:UserName,Userpwd:Userpwd},
+                data:{aname:aname,pwd:pwd},
                 dataType:"text",
                 success:function(data){
                     console.log(data);
