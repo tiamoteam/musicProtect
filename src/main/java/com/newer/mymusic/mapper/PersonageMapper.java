@@ -15,7 +15,7 @@ public interface PersonageMapper {
 
 
      //注册
-    @Insert("insert into personage(UserName,Userpwd,email) value(#{UserName},#{Userpwd},#{email})")
+    @Insert("insert into personage(UserName,email,Userpwd) values(#{UserName},#{email},#{Userpwd})")
     public int addPersonage(personage p);
 
 }

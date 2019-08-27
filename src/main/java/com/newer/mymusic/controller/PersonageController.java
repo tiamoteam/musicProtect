@@ -20,12 +20,12 @@ public class PersonageController {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("pwd")String pwd){
+    public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
         int msg = 0;
-        personage a = personageService.getpersonage(aname,pwd);
+        personage a = personageService.getpersonage(UserName,Userpwd);
 
             if (a != null ) {
-                String token = jwtTokenUtil.createJwt(aname);
+                String token = jwtTokenUtil.createJwt(UserName);
                 System.out.println(token);
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
@@ -36,10 +36,11 @@ public class PersonageController {
 
     @PostMapping("/zhuce")
     public ResponseEntity<?> zhuce(personage p){
-       int flous=0;
+       int fluRows=0;
+        System.out.println(p);
         if (p!=null){
-           flous=personageService.addPersonage(p);
-            return new ResponseEntity<>(flous,HttpStatus.OK);
+            fluRows=personageService.addPersonage(p);
+            return new ResponseEntity<>(fluRows,HttpStatus.OK);
         }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

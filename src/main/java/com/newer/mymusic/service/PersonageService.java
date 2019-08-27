@@ -2,10 +2,12 @@ package com.newer.mymusic.service;
 
 import com.newer.mymusic.domain.personage;
 import com.newer.mymusic.mapper.PersonageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PersonageService {
+    @Autowired
     private PersonageMapper personageMapper;
 
     public personage getpersonage(String UserName,String Userpwd){
