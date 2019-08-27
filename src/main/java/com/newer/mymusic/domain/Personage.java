@@ -2,7 +2,7 @@ package com.newer.mymusic.domain;
 
 import java.io.Serializable;
 //个人表
-public class personage implements Serializable {
+public class Personage implements Serializable {
     private static final long serialVersionUID = 4094012456050356183L;
     private int Userid;      	//用户id          主键			自增
     private String UserName;			//用户登录账户
@@ -22,10 +22,10 @@ public class personage implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public personage() {
+    public Personage() {
     }
 
-    public personage(int userid, String userName, String userpwd, String name, int state, String headportrait, String address, int fans, int compliments, String sex, String phone, int age, String email, String personalSignature, String x, int y, int z) {
+    public Personage(int userid, String userName, String userpwd, String name, int state, String headportrait, String address, int fans, int compliments, String sex, String phone, int age, String email, String personalSignature, String x, int y, int z) {
         Userid = userid;
         UserName = userName;
         Userpwd = userpwd;

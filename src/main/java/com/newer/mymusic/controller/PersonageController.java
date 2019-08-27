@@ -1,6 +1,6 @@
 package com.newer.mymusic.controller;
 
-import com.newer.mymusic.domain.personage;
+import com.newer.mymusic.domain.Personage;
 import com.newer.mymusic.service.PersonageService;
 import com.newer.mymusic.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +20,22 @@ public class PersonageController {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("pwd")String pwd){
-        int msg = 0;
-        personage a = personageService.getpersonage(aname,pwd);
+    public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
+
+        Personage a = personageService.getpersonage(UserName,Userpwd);
 
             if (a != null ) {
-                String token = jwtTokenUtil.createJwt(aname);
+                String token = jwtTokenUtil.createJwt(UserName);
                 System.out.println(token);
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
         else{
-            return new ResponseEntity<>(msg,HttpStatus.OK);
+            return new ResponseEntity<>(a,HttpStatus.OK);
         }
     }
 
     @PostMapping("/zhuce")
-    public ResponseEntity<?> zhuce(personage p){
+    public ResponseEntity<?> zhuce(Personage p){
        int flous=0;
         if (p!=null){
            flous=personageService.addPersonage(p);
