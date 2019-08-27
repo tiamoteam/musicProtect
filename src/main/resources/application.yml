@@ -1,8 +1,19 @@
+
 server:
   port: 8087
 spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/musicwideo?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
-   driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/musicwideo?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: com.newer.mymusic.domain
+logging:
+  level:
+      com.newer.mymusic.mapper: debug #输出该包下debug级别及以上级别的日志记录
+jwt:
+  secret: newer
+  expiration: 6400
+auth:
+  header: Authorization
