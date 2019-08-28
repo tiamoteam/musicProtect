@@ -10,7 +10,10 @@ public class musictable implements Serializable {
     private static final long serialVersionUID = -5549869706689388244L;
     private int MusicID ;//歌曲id
     private String  Musicname;	   //歌曲名字
-    private  String Musicalgenre;	//歌曲流派
+    private  String Musicalgenre1;	//歌曲流派1
+    private  String Musicalgenre2;	//歌曲流派2
+    private  String Musicalgenre3;	//歌曲流派3
+    private  String Musicalgenre4;	//歌曲流派4
     private String Musicintro;		//歌曲简介
     private int Userid;		//上传用户
     private int MusicCollection; 	 //收藏次数
@@ -29,22 +32,36 @@ public class musictable implements Serializable {
     public musictable() {
     }
 
-    public musictable(int musicID, String musicname, String musicalgenre, String musicintro, int userid, int musicCollection, int musicalCompliments, String singer, Date musictime, Date musicBeformtime, int musicnum, String musicurl, String x, String y, String z) {
-        MusicID = musicID;
-        Musicname = musicname;
-        Musicalgenre = musicalgenre;
-        Musicintro = musicintro;
-        Userid = userid;
-        MusicCollection = musicCollection;
-        MusicalCompliments = musicalCompliments;
-        Singer = singer;
-        Musictime = musictime;
-        MusicBeformtime = musicBeformtime;
-        Musicnum = musicnum;
-        Musicurl = musicurl;
-        X = x;
-        Y = y;
-        Z = z;
+    public String getMusicalgenre1() {
+        return Musicalgenre1;
+    }
+
+    public void setMusicalgenre1(String musicalgenre1) {
+        Musicalgenre1 = musicalgenre1;
+    }
+
+    public String getMusicalgenre2() {
+        return Musicalgenre2;
+    }
+
+    public void setMusicalgenre2(String musicalgenre2) {
+        Musicalgenre2 = musicalgenre2;
+    }
+
+    public String getMusicalgenre3() {
+        return Musicalgenre3;
+    }
+
+    public void setMusicalgenre3(String musicalgenre3) {
+        Musicalgenre3 = musicalgenre3;
+    }
+
+    public String getMusicalgenre4() {
+        return Musicalgenre4;
+    }
+
+    public void setMusicalgenre4(String musicalgenre4) {
+        Musicalgenre4 = musicalgenre4;
     }
 
     public int getMusicID() {
@@ -61,14 +78,6 @@ public class musictable implements Serializable {
 
     public void setMusicname(String musicname) {
         Musicname = musicname;
-    }
-
-    public String getMusicalgenre() {
-        return Musicalgenre;
-    }
-
-    public void setMusicalgenre(String musicalgenre) {
-        Musicalgenre = musicalgenre;
     }
 
     public String getMusicintro() {

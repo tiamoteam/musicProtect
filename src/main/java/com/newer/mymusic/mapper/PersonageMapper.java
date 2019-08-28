@@ -18,8 +18,8 @@ public interface PersonageMapper {
     @Insert("insert into personage(UserName,Userpwd,email) value(#{UserName},#{Userpwd},#{email})")
     public int addPersonage(Personage p);
 
-    //根据id查询用户信息
-    @Select("select * from personage where Userid = #{Userid}")
-    public Personage selectById(@Param("Userid") String Userid);
+    //根据用户名查询用户信息
+    @Select("select * from personage where UserName = #{UserName}")
+    public Personage selectById(@Param("UserName") String UserName);
 
 }

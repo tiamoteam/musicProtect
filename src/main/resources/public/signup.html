@@ -105,7 +105,9 @@
                 success:function(data){
                     console.log(data);
                     setJwtToken(data);
-                    if(data==0){
+                    if(data==2){
+                        alert("该用户名已被注册！");
+                    }else if(data==0){
                         alert("账号或密码或邮箱为空！");
                     }else{
                         setTimeout(function(){

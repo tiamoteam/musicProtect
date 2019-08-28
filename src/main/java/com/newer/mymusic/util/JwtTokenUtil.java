@@ -38,8 +38,9 @@ public class JwtTokenUtil {
 				.setIssuer(uid) // 设置当前用户信息
 				.setExpiration(calculateExpirationDate(now)) // 设置失效时间
 				.setSubject("uid")
-				.claim("realname", "匿名")//通过claim()方法可添加若干属性，也可以添加一个对象
+				.claim("UserName", "匿名")//通过claim()方法可添加若干属性，也可以添加一个对象
 				.claim("sex", "不详")
+				.claim("Userid", "用户id")
 				.signWith(SignatureAlgorithm.HS512, secret);// 设置加密算法、指定密钥
 		return jwtBuilder.compact();
 

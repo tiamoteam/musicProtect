@@ -28,7 +28,7 @@ public class PersonageController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
-
+        int msg = 0;
         Personage a = personageService.getpersonage(UserName,Userpwd);
 
             if (a != null ) {
@@ -37,27 +37,31 @@ public class PersonageController {
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
         else{
-            return new ResponseEntity<>(a,HttpStatus.OK);
+            return new ResponseEntity<>(msg,HttpStatus.OK);
         }
     }
 
     @PostMapping("/zhuce")
     public ResponseEntity<?> zhuce(Personage p){
        int flous=0;
-        if (p!=null){
+        Personage p1;
+       if ((p1=personageService.selectById(p.getUserName()))!=null){
+           flous=2;
+           return new ResponseEntity<>(flous,HttpStatus.OK);
+       }else if (p!=null){
            flous=personageService.addPersonage(p);
             return new ResponseEntity<>(flous,HttpStatus.OK);
-        }
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else {
+            return new ResponseEntity<>(flous,HttpStatus.OK);
+       }
     }
-
 
     @RequestMapping("/check")
     public ResponseEntity<?> check(HttpServletRequest request){
         String token = request.getHeader(header);
         if(token!=null){
             Claims claims = jwtTokenUtil.parseJWT(token);
-
+            System.out.println(token);
             Personage p = personageService.selectById(claims.getIssuer());
             return new ResponseEntity<>(p,HttpStatus.OK);
         }else{
