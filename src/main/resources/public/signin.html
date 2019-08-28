@@ -28,11 +28,11 @@
         </header>
         <form action="index.html">
           <div class="form-group">
-            <input type="text" placeholder="aname" class="form-control rounded input-lg text-center no-border" id="UserName">
+            <input type="text" placeholder="aname" class="form-control rounded input-lg text-center no-border" id="aname">
             <p id="p1" style="color:red"></p>
           </div>
           <div class="form-group">
-             <input type="password" placeholder="Password" class="form-control rounded input-lg text-center no-border" id="Userpwd">
+             <input type="password" placeholder="Password" class="form-control rounded input-lg text-center no-border" id="pwd">
             <p id="p2" style="color:red"></p>
           </div>
           <button type="button" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"  id="btnLogin"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
@@ -70,28 +70,30 @@
     $(()=>{
 
         $("#btnLogin").click(()=>{
-            var aname=$("#aname").val();
-            var pwd=$("#pwd").val();
+            var UserName=$("#aname").val();
+            var Userpwd=$("#pwd").val();
 
-            if (!aname){
+            if (!UserName){
                 $("#p1").text("用户名不能为空")
                 return;
             }
-            if (!pwd){
+            if (!Userpwd){
                 $("#p2").text("密码不能为空")
                 return;
             }
             $.ajax({
                 type:"post",
                 url:"login",
-                data:{aname:aname,pwd:pwd},
+                data:{UserName:UserName,Userpwd:Userpwd},
                 dataType:"text",
                 success:function(data){
                     console.log(data);
                     setJwtToken(data);
-                    if(data==0){
+                    if(data==2){
+                        alert("该用户名已被注册！");
+                    }else if (data==0) {
                         alert("账号或密码错误！");
-                    }else{
+                    } else{
                         location.href="index.html";
                     }
                 }
