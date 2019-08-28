@@ -20,17 +20,17 @@ public class PersonageController {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("pwd")String pwd){
-        int msg = 0;
-        Personage a = personageService.getpersonage(aname,pwd);
+    public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
+
+        Personage a = personageService.getpersonage(UserName,Userpwd);
 
             if (a != null ) {
-                String token = jwtTokenUtil.createJwt(aname);
+                String token = jwtTokenUtil.createJwt(UserName);
                 System.out.println(token);
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
         else{
-            return new ResponseEntity<>(msg,HttpStatus.OK);
+            return new ResponseEntity<>(a,HttpStatus.OK);
         }
     }
 
