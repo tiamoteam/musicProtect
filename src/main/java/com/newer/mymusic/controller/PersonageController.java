@@ -4,12 +4,17 @@ import com.newer.mymusic.domain.Personage;
 
 import com.newer.mymusic.service.PersonageService;
 import com.newer.mymusic.util.JwtTokenUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class PersonageController {
@@ -18,6 +23,8 @@ public class PersonageController {
     private PersonageService personageService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Value("${auth.header}") //去application.yml 获取auth.header的值
+    private String header;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("UserName")String UserName, @RequestParam("Userpwd")String Userpwd){
@@ -42,6 +49,20 @@ public class PersonageController {
             return new ResponseEntity<>(flous,HttpStatus.OK);
         }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @RequestMapping("/check")
+    public ResponseEntity<?> check(HttpServletRequest request){
+        String token = request.getHeader(header);
+        if(token!=null){
+            Claims claims = jwtTokenUtil.parseJWT(token);
+
+            Personage p = personageService.selectById(claims.getIssuer());
+            return new ResponseEntity<>(p,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("fail",HttpStatus.OK);
+        }
     }
 
 

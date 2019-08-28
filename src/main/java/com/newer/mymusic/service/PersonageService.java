@@ -19,4 +19,9 @@ public class PersonageService {
     };
 
 
+    public  Personage selectById(String Userid){
+        return personageMapper.selectById(Userid);
+    }
+
+
 }
