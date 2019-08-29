@@ -92,7 +92,9 @@
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="images/a0.png" alt="...">
               </span>
-              John.Smith <b class="caret"></b>
+              <span id="UserName">
+               <b class="caret"></b>
+                </span>
             </a>
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
@@ -954,7 +956,8 @@
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
   <!-- App -->
-  <script src="js/app.js"></script>  
+  <script src="js/app.js"></script>
+  <script src="js/jwt.js"></script>
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/app.plugin.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
@@ -962,4 +965,23 @@
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
 
 </body>
+<script>
+    $(()=>{
+        loadUser();
+    })
+    function loadUser(){
+        $.ajax({
+            type:"get",
+            url:"check",
+            dataType:"json",
+            headers:createAuthorizationTokenHeader(),
+            success:function(data){
+                if(data){
+                    //console.log(data);
+                    $("#UserName").html(data.userName);
+                }
+            }
+        })
+    }
+</script>
 </html>

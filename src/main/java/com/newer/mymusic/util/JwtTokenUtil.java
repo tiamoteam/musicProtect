@@ -45,6 +45,19 @@ public class JwtTokenUtil {
 		return jwtBuilder.compact();
 
 	}
+	//解析用户名
+	public String getAnameByToken(String token){
+		try {
+			if (token!=null){
+				Claims claims=parseJWT(token);
+				String UserName=claims.getIssuer();
+				return UserName;
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * 验证JWT

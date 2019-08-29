@@ -1356,8 +1356,7 @@
             headers:createAuthorizationTokenHeader(),
             success:function(data){
                 if(data){
-                    console.log(data);
-                    setJwtToken(data);
+                    //console.log(data);
                     $("#UserName").html(data.userName);
                 }
             }

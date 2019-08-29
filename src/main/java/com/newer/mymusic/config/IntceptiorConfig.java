@@ -10,7 +10,7 @@ public class IntceptiorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(createInterceptor()).addPathPatterns("/**")//所有路径
-                .excludePathPatterns("/login");//不会拦截的请求
+                .excludePathPatterns("/login","/check");//不会拦截的请求
     }
 
     @Bean
