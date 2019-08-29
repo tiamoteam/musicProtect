@@ -24,4 +24,7 @@ public class PersonageService {
     }
 
 
+    public int updPersonage(Personage updPersonage){
+        return personageMapper.updPersonage(updPersonage);
+    }
 }
