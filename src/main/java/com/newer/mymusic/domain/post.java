@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.xml.crypto.Data;
 import java.io.Serializable;
 //帖子表
-public class post implements Serializable {
+public class Post implements Serializable {
     private static final long serialVersionUID = -2762062934390694141L;
     private int Postid	;		//帖子id		主键		自增
     private String Posttitle;		// 帖子标题
@@ -20,10 +20,10 @@ public class post implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public post() {
+    public Post() {
     }
 
-    public post(int postid, String posttitle, String postContent, String postType, String userid, Data time, String x, int y, int z) {
+    public Post(int postid, String posttitle, String postContent, String postType, String userid, Data time, String x, int y, int z) {
         Postid = postid;
         Posttitle = posttitle;
         PostContent = postContent;

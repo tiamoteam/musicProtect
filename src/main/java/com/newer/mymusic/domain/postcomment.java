@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.xml.crypto.Data;
 import java.io.Serializable;
 //帖子评论表
-public class postcomment implements Serializable {
+public class Postcomment implements Serializable {
     private static final long serialVersionUID = 2565712283198216400L;
     private int Atomid;		//评论id		主键		自增
     private String  Contents;		//评论内容
@@ -19,10 +19,10 @@ public class postcomment implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public postcomment() {
+    public Postcomment() {
     }
 
-    public postcomment(int atomid, String contents, int postID, Data atomTime, int userid, String x, int y, int z) {
+    public Postcomment(int atomid, String contents, int postID, Data atomTime, int userid, String x, int y, int z) {
         Atomid = atomid;
         Contents = contents;
         this.postID = postID;

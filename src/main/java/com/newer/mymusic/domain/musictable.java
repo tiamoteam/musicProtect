@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-public class musictable implements Serializable {
+public class Musictable implements Serializable {
     private static final long serialVersionUID = -5549869706689388244L;
     private int MusicID ;//歌曲id
     private String  Musicname;	   //歌曲名字
@@ -29,7 +29,7 @@ public class musictable implements Serializable {
     private String Y;	//备用2
     private String Z; //备用3
 
-    public musictable() {
+    public Musictable() {
     }
 
     public String getMusicalgenre1() {

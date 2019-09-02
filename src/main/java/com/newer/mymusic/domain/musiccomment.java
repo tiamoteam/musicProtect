@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 //歌曲评论表
-public class musiccomment implements Serializable {
+public class Musiccomment implements Serializable {
     private static final long serialVersionUID = -3254073086068367670L;
     private int  MusicReviewid;//评论id		主键		自增
     private String Contents;//评论内容
@@ -20,10 +20,10 @@ public class musiccomment implements Serializable {
     private int Y;		//备用2
     private int Z;	    //备用3
 
-    public musiccomment() {
+    public Musiccomment() {
     }
 
-    public musiccomment(int musicReviewid, String contents, int musicID, Date reviewTime, int userid, String x, int y, int z) {
+    public Musiccomment(int musicReviewid, String contents, int musicID, Date reviewTime, int userid, String x, int y, int z) {
         MusicReviewid = musicReviewid;
         Contents = contents;
         MusicID = musicID;

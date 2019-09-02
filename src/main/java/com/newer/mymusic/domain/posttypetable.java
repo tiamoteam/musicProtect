@@ -2,7 +2,7 @@ package com.newer.mymusic.domain;
 
 import java.io.Serializable;
 //帖子类别表
-public class posttypetable implements Serializable {
+public class Posttypetable implements Serializable {
     private static final long serialVersionUID = -6851473669000358831L;
     private int Posttypeid; //分类id
     private String  Posttype; //帖子类别
@@ -10,10 +10,10 @@ public class posttypetable implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public posttypetable() {
+    public Posttypetable() {
     }
 
-    public posttypetable(int posttypeid, String posttype, String x, int y, int z) {
+    public Posttypetable(int posttypeid, String posttype, String x, int y, int z) {
         Posttypeid = posttypeid;
         Posttype = posttype;
         X = x;

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 //歌单表（根据用户id 查询个人歌单）
-public class musicmenu implements Serializable {
+public class Musicmenu implements Serializable {
 
     private static final long serialVersionUID = 5128700201038743164L;
     private int songsheetid;	//歌单id
@@ -22,10 +22,10 @@ public class musicmenu implements Serializable {
     private int Z;		//备用3
 
 
-    public musicmenu() {
+    public Musicmenu() {
     }
 
-    public musicmenu(int songsheetid, String songsheetname, int userid, Date songsheettime, int musicid, String x, int y, int z) {
+    public Musicmenu(int songsheetid, String songsheetname, int userid, Date songsheettime, int musicid, String x, int y, int z) {
         this.songsheetid = songsheetid;
         this.songsheetname = songsheetname;
         this.userid = userid;

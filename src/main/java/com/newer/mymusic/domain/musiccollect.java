@@ -2,7 +2,7 @@ package com.newer.mymusic.domain;
 
 import java.io.Serializable;
 //歌曲收藏表（根据用户id 查询个人收藏）
-public class musiccollect implements Serializable {
+public class Musiccollect implements Serializable {
     private static final long serialVersionUID = -8898576872191254417L;
     private int Collectionid;	//收藏id		主键			自增
     private int MusicID ;  //歌曲id 		歌曲表关联
@@ -11,10 +11,10 @@ public class musiccollect implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public musiccollect() {
+    public Musiccollect() {
     }
 
-    public musiccollect(int collectionid, int musicID, int userid, String x, int y, int z) {
+    public Musiccollect(int collectionid, int musicID, int userid, String x, int y, int z) {
         Collectionid = collectionid;
         MusicID = musicID;
         Userid = userid;
