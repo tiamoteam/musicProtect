@@ -546,77 +546,6 @@
                                             <input type="file" class="upload_pic" id="upload" /></span>
                                     </div>
 
-                                    <script>
-                                        //获取上传按钮
-                                        var input1 = document.getElementById("upload");
-
-                                        if(typeof FileReader==='undefined'){
-                                            //result.innerHTML = "抱歉，你的浏览器不支持 FileReader";
-                                            input1.setAttribute('disabled','disabled');
-                                        }else{
-                                            input1.addEventListener('change',readFile,false);
-                                            /*input1.addEventListener('change',function (e){
-                                                console.log(this.files);//上传的文件列表
-                                            },false); */
-                                        }
-                                        function readFile(){
-                                            var file = this.files[0];//获取上传文件列表中第一个文件
-                                            if(!/image\/\w+/.test(file.type)){
-                                                //图片文件的type值为image/png或image/jpg
-                                                alert("文件必须为图片！");
-                                                return false;
-                                            }
-                                            // console.log(file);
-                                            var reader = new FileReader();//实例一个文件对象
-                                            reader.readAsDataURL(file);//把上传的文件转换成url
-                                            //当文件读取成功便可以调取上传的接口
-                                            reader.onload = function(e){
-                                                // console.log(this.result);//文件路径
-                                                // console.log(e.target.result);//文件路径
-                                                /*var data = e.target.result.split(',');
-                                                var tp = (file.type == 'image/png')? 'png': 'jpg';
-                                                var imgUrl = data[1];//图片的url，去掉(data:image/png;base64,)
-                                                //需要上传到服务器的在这里可以进行ajax请求
-                                                // console.log(imgUrl);
-                                                // 创建一个 Image 对象
-                                                var image = new Image();
-                                                // 创建一个 Image 对象
-                                                // image.src = imgUrl;
-                                                image.src = e.target.result;
-                                                image.onload = function(){
-                                                    document.body.appendChild(image);
-                                                }*/
-
-                                                var image = new Image();
-                                                // 设置src属性
-                                                image.src = e.target.result;
-                                                var max=200;
-                                                // 绑定load事件处理器，加载完成后执行，避免同步问题
-                                                image.onload = function(){
-                                                    // 获取 canvas DOM 对象
-                                                    var canvas = document.getElementById("cvs");
-                                                    // 如果高度超标 宽度等比例缩放 *=
-                                                    /*if(image.height > max) {
-                                                        image.width *= max / image.height;
-                                                        image.height = max;
-                                                    } */
-                                                    // 获取 canvas的 2d 环境对象,
-                                                    var ctx = canvas.getContext("2d");
-                                                    // canvas清屏
-                                                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                                    // 重置canvas宽高
-                                                    /*canvas.width = image.width;
-                                                    canvas.height = image.height;
-                                                    if (canvas.width>max) {canvas.width = max;}*/
-                                                    // 将图像绘制到canvas上
-                                                    // ctx.drawImage(image, 0, 0, image.width, image.height);
-                                                    ctx.drawImage(image, 0, 0, 200, 200);
-                                                    // 注意，此时image没有加入到dom之中
-                                                };
-                                            }
-                                        };
-                                    </script>
-
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">用户名</label>
@@ -627,11 +556,12 @@
 
                                     <div class="line line-dashed b-b line-lg pull-in"></div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-id-1">性别</label>
+                                        <label class="col-sm-2 control-label">性别</label>
                                         <div class="col-sm-10">
-                                            <input id="man" type="radio" checked="checked" name="sex"  value="男" />男
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input id="woman" type="radio"  name="sex"  value="女"/>女
+                                            <input name="gender" type="radio" id="gender-m" checked value="男">
+                                            <label for="gender-m">男</label>
+                                            <input type="radio" id="gender-f" name="gender" value="女">
+                                            <label for="gender-f">女</label>
                                         </div>
                                     </div>
 
@@ -654,7 +584,7 @@
 
                                     <div class="line line-dashed b-b line-lg pull-in"></div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-id-1">年龄</label>
+                                        <label class="col-sm-2 control-label">年龄</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="age">
                                         </div>
@@ -769,6 +699,7 @@
                 if(data){
                     console.log(data);
                     $("#UserName").html(data.userName);
+                    $(":radio[name='gender'][value='" +data.sex+ "']").prop("checked", "checked");
                     $("#name").val(data.name);
                     $("#phone").val(data.phone);
                     $("#email").val(data.email);
@@ -781,11 +712,81 @@
     }
 
 
+    //获取上传按钮
+    var input1 = document.getElementById("upload");
+
+    if(typeof FileReader==='undefined'){
+        //result.innerHTML = "抱歉，你的浏览器不支持 FileReader";
+        input1.setAttribute('disabled','disabled');
+    }else{
+        input1.addEventListener('change',readFile,false);
+        /*input1.addEventListener('change',function (e){
+            console.log(this.files);//上传的文件列表
+        },false); */
+    }
+    function readFile(){
+        var file = this.files[0];//获取上传文件列表中第一个文件
+        console.log(file.name);
+        if(!/image\/\w+/.test(file.type)){
+            //图片文件的type值为image/png或image/jpg
+            alert("文件必须为图片！");
+            return false;
+        }
+        // console.log(file);
+        var reader = new FileReader();//实例一个文件对象
+        reader.readAsDataURL(file);//把上传的文件转换成url
+        //当文件读取成功便可以调取上传的接口
+        reader.onload = function(e){
+            // console.log(this.result);//文件路径
+            // console.log(e.target.result);//文件路径
+            /*var data = e.target.result.split(',');
+            var tp = (file.type == 'image/png')? 'png': 'jpg';
+            var imgUrl = data[1];//图片的url，去掉(data:image/png;base64,)
+            //需要上传到服务器的在这里可以进行ajax请求
+            // console.log(imgUrl);
+            // 创建一个 Image 对象
+            var image = new Image();
+            // 创建一个 Image 对象
+            // image.src = imgUrl;
+            image.src = e.target.result;
+            image.onload = function(){
+                document.body.appendChild(image);
+            }*/
+
+            var image = new Image();
+            // 设置src属性
+            image.src = e.target.result;
+            var max=200;
+            // 绑定load事件处理器，加载完成后执行，避免同步问题
+            image.onload = function(){
+                // 获取 canvas DOM 对象
+                var canvas = document.getElementById("cvs");
+                // 如果高度超标 宽度等比例缩放 *=
+                /*if(image.height > max) {
+                    image.width *= max / image.height;
+                    image.height = max;
+                } */
+                // 获取 canvas的 2d 环境对象,
+                var ctx = canvas.getContext("2d");
+                // canvas清屏
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // 重置canvas宽高
+                /*canvas.width = image.width;
+                canvas.height = image.height;
+                if (canvas.width>max) {canvas.width = max;}*/
+                // 将图像绘制到canvas上
+                // ctx.drawImage(image, 0, 0, image.width, image.height);
+                ctx.drawImage(image, 0, 0, 200, 200);
+                // 注意，此时image没有加入到dom之中
+            };
+        }
+    };
+
 
         $("#btnSave").click(()=>{
             var UserName=$("#UserName").text();
             var name=$("#name").val();
-            var sex=$("input[type='radio'][name='sex']:checked").val();
+            var sex=$("input[type='radio'][name='gender']:checked").val();
             var phone=$("#phone").val();
             var email=$("#email").val();
             var age=$("#age").val();
@@ -814,8 +815,22 @@
                 alert("用户名不能为空")
                 return;
             }
+            $.ajax({
+                type:"put",
+                url:"xiugai",
+                data:{name:name,Address:address,sex:sex,phone:phone,age:age,email:email,
+                    PersonalSignature:personalSignature,UserName:UserName},
+                dataType:"text",
+                success:function(data){
+                    console.log(data);
+                    if(data!=1){
+                        alert("修改失败！");
+                    } else{
+                        alert("修改成功！");
+                    }
+                }
+            })
         })
-
 </script>
 </body>
 </html>

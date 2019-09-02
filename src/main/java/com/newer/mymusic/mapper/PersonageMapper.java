@@ -25,8 +25,8 @@ public interface PersonageMapper {
 
 
     //根据用户名修改个人信息
-    @Update("UPDATE `personage` SET NAME=#{name},Address=#{address}," +
-            "sex=#{sex},phone=#{phone},age=#{UserName},email=#{email}," +
+    @Update("UPDATE `personage` SET name=#{name},Address=#{address}," +
+            "sex=#{sex},phone=#{phone},age=#{age},email=#{email}," +
             "PersonalSignature=#{personalSignature} WHERE UserName=#{UserName}")
     public  int  updPersonage(Personage updPersonage);
 
