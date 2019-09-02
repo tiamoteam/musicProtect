@@ -45,9 +45,9 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+              <button type="button" class="btn btn-sm bg-white btn-icon rounded" onclick="Search"><i class="fa fa-search"></i></button>
             </span>
-            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌曲、专辑…">
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌曲、专辑…" id="ss">
           </div>
         </div>
       </form>
@@ -1362,5 +1362,19 @@
             }
         })
     }
+    $("#Search").click(()=>{
+        <!--搜索-->
+        var searchAll=$("#ss").val();
+        $.ajax({
+            type: "post",
+            url: "search",
+            data: {anasearchAll:searchAll},
+            dataType: "json",
+            success: function (data) {
+                
+            }
+        })
+    })
+
 </script>
 </html>

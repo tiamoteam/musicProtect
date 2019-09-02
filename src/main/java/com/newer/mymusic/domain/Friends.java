@@ -1,8 +1,9 @@
 package com.newer.mymusic.domain;
 
 import java.io.Serializable;
+
 //好友表
-public class friends implements Serializable {
+public class Friends implements Serializable {
     private static final long serialVersionUID = -2023816473221067773L;
     private  int Friendid;			//好友id		主键		自增
     private String  Friendname;		//	好友名字
@@ -14,10 +15,10 @@ public class friends implements Serializable {
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public friends() {
+    public Friends() {
     }
 
-    public friends(int friendid, String friendname, int userid, int state, String headportrait, String personalSignature, String x, int y, int z) {
+    public Friends(int friendid, String friendname, int userid, int state, String headportrait, String personalSignature, String x, int y, int z) {
         Friendid = friendid;
         Friendname = friendname;
         Userid = userid;

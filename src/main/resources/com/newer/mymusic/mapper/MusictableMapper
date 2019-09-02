@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 唯一的-->
+<mapper namespace="com.newer.mymusic.mapper.MusictableMapper">
+
+    <cache eviction="LRU" readOnly="true"
+           flushInterval="6000" size="512"/>
+
+    <!--根据歌手名字或歌曲名字模糊查询歌曲-->
+    <select id="findByname"  resultType="musictable">
+        select * from Musictable
+        <where>
+            1=1
+            <if test="Musicname!=null and Musicname!='' or Singer!=null and Singer!=''">
+                and Musicname like concat('%',concat(#{Musicname},'%'))
+                or  Singer like concat('%',concat(#{Singer},'%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="findByname"  resultType="musictable">
+        select * from Musictable
+        <where>
+            1=1
+            <if test="Singer!=null and Singer!=''">
+                and Musicname like concat('%',concat(#{Musicname},'%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="findBySinger"  resultType="musictable">
+    select * from Musictable
+    <where>
+        1=1
+        <if test="Singer!=null and Singer!=''">
+            and Singer like concat('%',concat(#{Singer},'%'))
+        </if>
+    </where>
+</select>
+</mapper>

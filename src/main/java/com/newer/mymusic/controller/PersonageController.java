@@ -2,6 +2,8 @@ package com.newer.mymusic.controller;
 
 import com.newer.mymusic.domain.Personage;
 
+import com.newer.mymusic.domain.Musictable;
+import com.newer.mymusic.mapper.MusictableMapper;
 import com.newer.mymusic.service.PersonageService;
 import com.newer.mymusic.util.JwtTokenUtil;
 import io.jsonwebtoken.Claims;
@@ -12,12 +14,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class PersonageController {
 
     @Autowired
     private PersonageService personageService;
+    @Autowired
+    private MusictableMapper musictableMapper;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Value("${auth.header}") //去application.yml 获取auth.header的值
@@ -80,5 +86,24 @@ public class PersonageController {
         }
     }
 
+//搜索歌曲
+    @PostMapping("/search")
+    public ResponseEntity<?> search(@RequestParam("searchAll")String searchAll){
+        List<Musictable> m1=musictableMapper.findByname(searchAll);
+        List<Musictable> m2=musictableMapper.findBySinger(searchAll);
+        List<Musictable> m3=new ArrayList<>();
+        List<Musictable> m4=musictableMapper.findAll();
+        m3.addAll(m1);
+        m3.addAll(m2);
+    if(m1!=null && m2!=null){
+        return new ResponseEntity<>(m3,HttpStatus.OK);
+    }else if (m1!=null && m2==null){
+        return new ResponseEntity<>(m1,HttpStatus.OK);
+    }else if (m1==null && m2!=null){
+        return new ResponseEntity<>(m2,HttpStatus.OK);
+    }else {
+        return new ResponseEntity<>(m4, HttpStatus.OK);
+    }
+    }
 
 }

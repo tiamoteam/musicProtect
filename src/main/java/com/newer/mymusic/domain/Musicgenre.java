@@ -3,7 +3,7 @@ package com.newer.mymusic.domain;
 import java.io.Serializable;
 
 //歌曲流派表
-public class musicgenre implements Serializable {
+public class Musicgenre implements Serializable {
     private static final long serialVersionUID = -7541914075017872308L;
     private int genreID;	//流派ID
     private String Musicalgenre;	//歌曲流派	  歌曲表关联
@@ -16,10 +16,10 @@ public class musicgenre implements Serializable {
     private int Z;		//备用3
 
 
-    public musicgenre() {
+    public Musicgenre() {
     }
 
-    public musicgenre(int genreID, String musicalgenre, String genreportrait, String genreintro, int genrenum, int musicID, String x, int y, int z) {
+    public Musicgenre(int genreID, String musicalgenre, String genreportrait, String genreintro, int genrenum, int musicID, String x, int y, int z) {
         this.genreID = genreID;
         Musicalgenre = musicalgenre;
         Genreportrait = genreportrait;
