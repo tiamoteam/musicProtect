@@ -1,6 +1,7 @@
 package com.newer.mymusic.domain;
 
 import java.io.Serializable;
+
 //帖子类别表
 public class Posttypetable implements Serializable {
     private static final long serialVersionUID = -6851473669000358831L;

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.xml.crypto.Data;
 import java.io.Serializable;
+
 //帖子表
 public class Post implements Serializable {
     private static final long serialVersionUID = -2762062934390694141L;

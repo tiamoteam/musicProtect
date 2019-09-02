@@ -1,22 +1,23 @@
 package com.newer.mymusic.domain;
 
 import java.io.Serializable;
-// 视频收藏表（根据用户id 查询个人收藏）
-public class Videocollect implements Serializable {
-    private static final long serialVersionUID = 178062011441050328L;
-    private int  Collectionid;//收藏id		主键		自增
-    private  int Videoid;		//视频id
-    private  int Userid;		//用户id		个人表关联
-    private String X;	//备用1
+
+//歌曲收藏表（根据用户id 查询个人收藏）
+public class Musiccollect implements Serializable {
+    private static final long serialVersionUID = -8898576872191254417L;
+    private int Collectionid;	//收藏id		主键			自增
+    private int MusicID ;  //歌曲id 		歌曲表关联
+    private int Userid;	//收藏者id		个人表关联
+    private String X;		//备用1
     private int Y;		//备用2
     private int Z;		//备用3
 
-    public Videocollect() {
+    public Musiccollect() {
     }
 
-    public Videocollect(int collectionid, int videoid, int userid, String x, int y, int z) {
+    public Musiccollect(int collectionid, int musicID, int userid, String x, int y, int z) {
         Collectionid = collectionid;
-        Videoid = videoid;
+        MusicID = musicID;
         Userid = userid;
         X = x;
         Y = y;
@@ -31,12 +32,12 @@ public class Videocollect implements Serializable {
         Collectionid = collectionid;
     }
 
-    public int getVideoid() {
-        return Videoid;
+    public int getMusicID() {
+        return MusicID;
     }
 
-    public void setVideoid(int videoid) {
-        Videoid = videoid;
+    public void setMusicID(int musicID) {
+        MusicID = musicID;
     }
 
     public int getUserid() {

@@ -1,6 +1,7 @@
 package com.newer.mymusic.domain;
 
 import java.io.Serializable;
+
 //好友表
 public class Friends implements Serializable {
     private static final long serialVersionUID = -2023816473221067773L;
