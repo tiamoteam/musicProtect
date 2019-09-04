@@ -1,10 +1,7 @@
 package com.newer.mymusic.mapper;
 
 import com.newer.mymusic.domain.Admin;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,11 +28,11 @@ public interface AdminMapper {
     @Select("select * from admin")
     public List<Admin> selectAll();
 
-    @Update("update Admin set enable ='已启用' where aname = #{aname}")
-    public int updEnableqy( @Param("aname") String aname);
+    @Update("update Admin set enable ='已启用' where id = #{id}")
+    public int updEnableqy( @Param("id") int id);
 
-    @Update("update Admin set enable ='已禁用' where aname = #{aname}")
-    public int updEnablejy(@Param("aname") String aname);
+    @Update("update Admin set enable ='已禁用' where id = #{id}")
+    public int updEnablejy(@Param("id") int id);
 
     @Delete("delete from Admin where id = #{id}")
     public int delById(@Param("id") int id);

@@ -30,9 +30,9 @@ public class AdminService {
 
     public List<Admin> selectAll(){ return adminMapper.selectAll(); }
 
-    public int updEnableqy(String aname){ return adminMapper.updEnableqy(aname); }
+    public int updEnableqy(int id){ return adminMapper.updEnableqy(id); }
 
-    public int updEnablejy(String aname){ return adminMapper.updEnableqy(aname); }
+    public int updEnablejy(int id){ return adminMapper.updEnableqy(id); }
 
     public int delById(int id){ return adminMapper.delById(id); }
 

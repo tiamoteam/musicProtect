@@ -44,20 +44,13 @@ public class AdminController {
 
     //添加管理员的接口
     @PostMapping("/addAdmin")
-    public ResponseEntity<?> addAdmin(Admin a){
+    public ResponseEntity<?> addAdmin(Admin admin){
        int flous=0;
-        Admin a1;
-       if ((a1=adminService.selectById(a.getAname()))!=null){
-           flous=2;//判断用户名是否被注册
+       if(admin!=null){
+           flous = adminService.addAdmin(admin);
            return new ResponseEntity<>(flous,HttpStatus.OK);
-       }else if (a!=null){
-           //添加成功
-           flous=adminService.addAdmin(a);
-            return new ResponseEntity<>(flous,HttpStatus.OK);
-        }else {
-           //账号或密码为空！
-            return new ResponseEntity<>(flous,HttpStatus.OK);
        }
+       return new ResponseEntity<>(2,HttpStatus.OK);
     }
 
 
@@ -94,18 +87,18 @@ public class AdminController {
     }
 
     @PostMapping("/updqy")
-    public ResponseEntity<?> updEnableqy(String aname){
-        if(aname!=null){
-            int a = adminService.updEnableqy(aname);
+    public ResponseEntity<?> updEnableqy(int id){
+        if(id!=0){
+            int a = adminService.updEnableqy(id);
             return new ResponseEntity<>(a,HttpStatus.OK);
         }
         return  new ResponseEntity<>(2,HttpStatus.OK);
     }
 
     @PostMapping("/updjy")
-    public ResponseEntity<?> updEnablejy(String aname){
-        if(aname!=null){
-            int a = adminService.updEnablejy(aname);
+    public ResponseEntity<?> updEnablejy(int id){
+        if(id!=0){
+            int a = adminService.updEnablejy(id);
             return new ResponseEntity<>(a,HttpStatus.OK);
         }
         return  new ResponseEntity<>(2,HttpStatus.OK);
