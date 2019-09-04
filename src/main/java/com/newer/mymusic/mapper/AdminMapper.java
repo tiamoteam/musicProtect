@@ -1,7 +1,10 @@
 package com.newer.mymusic.mapper;
 
 import com.newer.mymusic.domain.Admin;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +14,7 @@ public interface AdminMapper {
 
     //登录
     @Select("select *from admin where aname=#{aname} and pwd=#{pwd}")
-    public Admin getAdmin(@Param("aname") String aname, @Param("pwd") String pwd);
-
+    public Admin getAdmin(@Param("aname") String aname, @Param("pwd") int pwd);
 
      //添加
     @Insert("insert into admin(aname,pwd,quanxian,dltime) value(#{aname},#{pwd},#{quanxian},SYSDATE())")
@@ -20,8 +22,7 @@ public interface AdminMapper {
 
     //根据修改密码
     @Update("update admin set pwd=#{pwd} where aname=#{aname}")
-    public int updPwd(Admin a);
-
+    public int updPwd(@Param("aname") String aname, @Param("pwd") int pwd);
     //根据用户名查询用户信息
     @Select("select * from admin where aname = #{aname}")
     public Admin selectById(@Param("aname") String aname);

@@ -25,17 +25,21 @@ public class AdminController {
 
     //登录接口
     @PostMapping("/login1")
-    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("password")String pwd){
+    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("password")int pwd){
         int msg = 0;
         Admin a = adminService.getAdmin(aname,pwd);
-            if (a != null ) {
-                String token = jwtTokenUtil.createJwt(aname);
-                System.out.println(token);
-                return new ResponseEntity<>(token, HttpStatus.OK);
-            }
-        else{
-            return new ResponseEntity<>(msg,HttpStatus.OK);
-        }
+ if(a.getEnable().equals("已启用")) {
+    if (a != null) {
+        String token = jwtTokenUtil.createJwt(aname);
+        System.out.println(token);
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
+         }else{
+          msg=1;
+     return new ResponseEntity<>(msg, HttpStatus.OK);
+         }
     }
 
     //添加管理员的接口
@@ -57,12 +61,26 @@ public class AdminController {
     }
 
 
-    //修改密码的接口
-    @PutMapping("/updpwd")
-    public ResponseEntity<?> updPwd(Admin a){
-        int flous=0;
-        Admin a1;
-        return new ResponseEntity<>(flous,HttpStatus.OK);
+    @RequestMapping("/updpwd")
+    public ResponseEntity<?> updpwd(@RequestParam("aname")String aname, @RequestParam("pwd")String pwd
+            , @RequestParam("pwd1")String pwd1, @RequestParam("pwd2")String pwd2) {
+        int msg;
+        Admin a = adminService.selectById(aname);
+        if (Integer.parseInt(pwd)==(a.getPwd())) {
+
+            if (pwd2.equals(pwd1)) {
+                msg=1;
+                msg = adminService.updPwd(aname, Integer.parseInt(pwd1));
+                return new ResponseEntity<>(msg, HttpStatus.OK);
+            }else {
+                msg=2;
+                return new ResponseEntity<>(msg, HttpStatus.OK);
+            }
+        }else {
+            msg=0;
+            return new ResponseEntity<>(msg, HttpStatus.OK);
+        }
+
     }
 
     //查看所有管理员的信息

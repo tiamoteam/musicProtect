@@ -123,7 +123,9 @@
                 success:function(data){
                     console.log(data);
                     setJwtToken(data);
-                     if (data==0) {
+                    if (data==1) {
+                        alert("该管理员账户已停用！");
+					}else if (data==0) {
                         alert("账号或密码错误！");
                     } else{
                         location.href="h_index.html";

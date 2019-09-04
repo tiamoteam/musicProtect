@@ -69,6 +69,7 @@
   <script src="js/jwt.js"></script>
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/app.plugin.js"></script>
+  <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
@@ -106,9 +107,9 @@
                     console.log(data);
                     setJwtToken(data);
                     if(data==2){
-                        alert("该用户名已被注册！");
+                        layer.msg("该用户名已被注册!",{icon:2,time:1000});
                     }else if(data==0){
-                        alert("账号或密码或邮箱为空！");
+                        layer.msg("账号或密码或邮箱为空!",{icon:2,time:1000});
                     }else{
                         setTimeout(function(){
                             location.href="signin.html";
