@@ -10,12 +10,12 @@ public class AdminService {
     @Autowired
     private AdminMapper  adminMapper;
 
-    public Admin getAdmin(String aname,String pwd) {
+    public Admin getAdmin(String aname,int pwd) {
         return adminMapper.getAdmin(aname, pwd);
     }
 
-    public int updPwd(Admin a) {
-        return adminMapper.updPwd(a);
+    public int updPwd(String aname,int pwd) {
+        return adminMapper.updPwd(aname,pwd);
     }
 
     public int addAdmin(Admin a) {
