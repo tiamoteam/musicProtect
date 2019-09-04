@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -60,6 +57,20 @@ public class PersonageController {
         }else {
             return new ResponseEntity<>(flous,HttpStatus.OK);
        }
+    }
+
+    @PutMapping("/xiugai")
+    public ResponseEntity<?> xiugai(Personage p){
+        int flous=0;
+        if ((personageService.selectById(p.getUserName()))==null){
+            flous=2;
+            return new ResponseEntity<>(flous,HttpStatus.OK);
+        }else if (p!=null){
+            flous=personageService.updPersonage(p);
+            return new ResponseEntity<>(flous,HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(flous,HttpStatus.OK);
+        }
     }
 
     @RequestMapping("/check")

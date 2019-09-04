@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="bank" target="12" />
       <module name="musicProtect" target="1.8" />
     </bytecodeTargetLevel>
   </component>
