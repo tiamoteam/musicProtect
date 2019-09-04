@@ -5,6 +5,8 @@ import com.newer.mymusic.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminService {
     @Autowired
@@ -25,5 +27,13 @@ public class AdminService {
     public  Admin selectById(String aname){
         return adminMapper.selectById(aname);
     }
+
+    public List<Admin> selectAll(){ return adminMapper.selectAll(); }
+
+    public int updEnableqy(String aname){ return adminMapper.updEnableqy(aname); }
+
+    public int updEnablejy(String aname){ return adminMapper.updEnableqy(aname); }
+
+    public int delById(int id){ return adminMapper.delById(id); }
 
 }

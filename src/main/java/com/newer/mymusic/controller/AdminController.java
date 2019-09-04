@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class AdminController {
@@ -22,11 +23,11 @@ public class AdminController {
     @Value("${auth.header}") //去application.yml 获取auth.header的值
     private String header;
 
+    //登录接口
     @PostMapping("/login1")
     public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("password")String pwd){
         int msg = 0;
         Admin a = adminService.getAdmin(aname,pwd);
-
             if (a != null ) {
                 String token = jwtTokenUtil.createJwt(aname);
                 System.out.println(token);
@@ -37,6 +38,7 @@ public class AdminController {
         }
     }
 
+    //添加管理员的接口
     @PostMapping("/addAdmin")
     public ResponseEntity<?> addAdmin(Admin a){
        int flous=0;
@@ -55,11 +57,49 @@ public class AdminController {
     }
 
 
+    //修改密码的接口
     @PutMapping("/updpwd")
     public ResponseEntity<?> updPwd(Admin a){
         int flous=0;
         Admin a1;
         return new ResponseEntity<>(flous,HttpStatus.OK);
+    }
+
+    //查看所有管理员的信息
+    @GetMapping("/selectAll")
+    public ResponseEntity<?> selectAll(){
+        List<Admin> adminList = adminService.selectAll();
+        if(adminList!=null){
+            return new ResponseEntity<>(adminList,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(1,HttpStatus.OK);
+    }
+
+    @PostMapping("/updqy")
+    public ResponseEntity<?> updEnableqy(String aname){
+        if(aname!=null){
+            int a = adminService.updEnableqy(aname);
+            return new ResponseEntity<>(a,HttpStatus.OK);
+        }
+        return  new ResponseEntity<>(2,HttpStatus.OK);
+    }
+
+    @PostMapping("/updjy")
+    public ResponseEntity<?> updEnablejy(String aname){
+        if(aname!=null){
+            int a = adminService.updEnablejy(aname);
+            return new ResponseEntity<>(a,HttpStatus.OK);
+        }
+        return  new ResponseEntity<>(2,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delById")
+    public ResponseEntity<?> delById(int id){
+        if(id!= 0){
+            int a = adminService.delById(id);
+            return  new ResponseEntity<>(a,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(2,HttpStatus.OK);
     }
 
     @RequestMapping("/check1")

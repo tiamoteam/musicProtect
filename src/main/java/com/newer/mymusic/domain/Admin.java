@@ -11,19 +11,21 @@ public class Admin implements Serializable {
     private int id;  //管理员id
     private String aname; //管理员账号
     private int pwd; //管理员密码l
-    private int quanxian;//权限等级 1超级管理员 2普通管理员
+    private String quanxian;//权限等级
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date dltime;//上次登录时间
+    private Date dltime;//成为管理员的日期
+    private String enable; //是否启用
     public Admin() {
     }
 
-    public Admin(int id, String aname, int pwd, int quanxian, Date dltime) {
+    public Admin(int id, String aname, int pwd, String quanxian, Date dltime, String enable) {
         this.id = id;
         this.aname = aname;
         this.pwd = pwd;
         this.quanxian = quanxian;
         this.dltime = dltime;
+        this.enable = enable;
     }
 
     public int getId() {
@@ -42,14 +44,6 @@ public class Admin implements Serializable {
         this.aname = aname;
     }
 
-    public int getQuanxian() {
-        return quanxian;
-    }
-
-    public void setQuanxian(int quanxian) {
-        this.quanxian = quanxian;
-    }
-
     public int getPwd() {
         return pwd;
     }
@@ -58,11 +52,27 @@ public class Admin implements Serializable {
         this.pwd = pwd;
     }
 
+    public String getQuanxian() {
+        return quanxian;
+    }
+
+    public void setQuanxian(String quanxian) {
+        this.quanxian = quanxian;
+    }
+
     public Date getDltime() {
         return dltime;
     }
 
     public void setDltime(Date dltime) {
         this.dltime = dltime;
+    }
+
+    public String getEnable() {
+        return enable;
+    }
+
+    public void setEnable(String enable) {
+        this.enable = enable;
     }
 }
