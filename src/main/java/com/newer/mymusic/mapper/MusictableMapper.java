@@ -1,7 +1,6 @@
 package com.newer.mymusic.mapper;
 
 import com.newer.mymusic.domain.Musictable;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

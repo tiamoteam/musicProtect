@@ -698,7 +698,7 @@
             success:function(data){
                 if(data){
                     console.log(data);
-                    $("#UserName").html(data.userName);
+                    $("#UserName").html(data.name);
                     $(":radio[name='gender'][value='" +data.sex+ "']").prop("checked", "checked");
                     $("#name").val(data.name);
                     $("#phone").val(data.phone);
