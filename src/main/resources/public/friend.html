@@ -88,13 +88,11 @@
             </section>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown" >
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="images/a0.png" alt="...">
               </span>
-              <span id="UserName">
-                <b class="caret"></b>
-              </span>
+              John.Smith <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
@@ -115,7 +113,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="signin.html" data-toggle="ajaxModal" >注销</a>
+                <a href="modal.lockme.html" data-toggle="ajaxModal" >注销</a>
               </li>
             </ul>
           </li>
@@ -479,7 +477,7 @@
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <a href="signin.html" data-toggle="ajaxModal" >注销</a>
+                        <a href="modal.lockme.html" data-toggle="ajaxModal" >注销</a>
                       </li>
                     </ul>
                   </div>
@@ -500,7 +498,7 @@
                             <img src="images/a0.png" class="img-circle">
                           </a>
                           <div>
-                            <div class="h3 m-t-xs m-b-xs" id="name"></div>
+                            <div class="h3 m-t-xs m-b-xs">John.Smith</div>
                             <small class="text-muted"><i class="fa fa-map-marker"></i> London, UK</small>
                           </div>                
                         </div>
@@ -513,17 +511,30 @@
                               </a>
                             </div>
                             <div class="col-xs-6">
-                              <a href="#">
-                                <span class="m-b-xs h4 block">55</span>
-                                <small class="text-muted">Following</small>
+                              <a class="btn btn-success btn-rounded" data-toggle="button">
+                            <span class="text">
+                              <i class="fa fa-plus"></i> 关注
+                            </span>
+                                <span class="text-active">
+                              <i class="fa fa-check"></i> 已关注
+                            </span>
                               </a>
                             </div>
                           </div>
                         </div>
                         <div class="btn-group btn-group-justified m-b">
-                          <a href="personalcenter.html" class="btn btn-success btn-rounded" >设置</a>
+                          <a class="btn btn-success btn-rounded" data-toggle="button">
+                            <span class="text">
+                              <i class="fa fa-plus"></i> 添加好友
+                            </span>
+                            <span class="text-active">
+                              <i class="fa fa-check"></i> 已申请
+                            </span>
+                          </a>
+                          <a class="btn btn-dark btn-rounded">
+                            <i class="fa fa-comment-o"></i> 聊天
+                          </a>
                         </div>
-
                         <div>
                           <small class="text-uc text-xs text-muted">about me</small>
                           <p>Artist</p>
@@ -546,7 +557,7 @@
                     <header class="header bg-light lt">
                       <ul class="nav nav-tabs nav-white">
                         <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-                        <li class=""><a href="#events" data-toggle="tab">好友</a></li>
+                        <li class=""><a href="#events" data-toggle="tab">Events</a></li>
                         <li class=""><a href="#interaction" data-toggle="tab">Interaction</a></li>
                       </ul>
                     </header>
@@ -717,33 +728,13 @@
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
   <!-- App -->
-  <script src="js/app.js"></script>
-  <script src="js/jwt.js"></script>
+  <script src="js/app.js"></script>  
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
   <script src="js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
   <script src="js/app.plugin.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
-<script>
-    $(()=>{
-        loadUser();
-    })
-    function loadUser(){
-        $.ajax({
-            type:"get",
-            url:"check",
-            dataType:"json",
-            headers:createAuthorizationTokenHeader(),
-            success:function(data){
-                if(data){
-                    //console.log(data);
-                    $("#UserName").html(data.name);
-                    $("#name").html(data.name);
-                }
-            }
-        })
-    }
-</script>
+
 </body>
 </html>
