@@ -2,6 +2,7 @@ package com.newer.mymusic.service;
 
 import com.newer.mymusic.domain.Musictable;
 import com.newer.mymusic.mapper.MusictableMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,13 @@ public class MusictableService {
 
     public List<Musictable> findBySinger(String Singer){
         return musictableMapper.findByname(Singer);
+    }
+
+    public int delById(@Param("musicID") int musicID){
+        return musictableMapper.delById(musicID);
+    }
+
+    public int addMt(Musictable musictable){
+        return musictableMapper.addMt(musictable);
     }
 }

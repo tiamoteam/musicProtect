@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -79,9 +80,11 @@ public class AdminController {
     //查看所有管理员的信息
     @GetMapping("/selectAll")
     public ResponseEntity<?> selectAll(){
+        HashMap<String,List<Admin>> map = new HashMap<>();
         List<Admin> adminList = adminService.selectAll();
         if(adminList!=null){
-            return new ResponseEntity<>(adminList,HttpStatus.OK);
+            map.put("data",adminList);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
         return new ResponseEntity<>(1,HttpStatus.OK);
     }

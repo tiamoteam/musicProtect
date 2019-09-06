@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>歌曲上架</title>
+<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="page-container">
+	<form  class="form form-horizontal" enctype="multipart/form-data" method="post" name="fileinfo">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="Musicname" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">歌曲流派：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre1" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre2" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre3" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre4" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">歌曲简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text"  placeholder="" id="Musicintro" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">歌手：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="" id="Singer" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>选择歌曲：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input class="btn btn-primary radius" type="file" name="file" id="file">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 确认上架</button>
+				<button class="btn btn-default radius" type="reset">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript">
+function article_save_submit(){
+	var Musicname = $("#Musicname").val();
+	var Musicalgenre1 = $("#Musicalgenre1").val();
+	var Musicalgenre2 = $("#Musicalgenre2").val();
+	var Musicalgenre3 = $("#Musicalgenre3").val();
+	var Musicalgenre4 = $("#Musicalgenre4").val();
+	var Musicintro = $("#Musicintro").val();
+	var Singer = $("#Singer").val();
+	var file = $("#file")[0].files[0];
+	console.log(file);
+	var formData = new FormData();
+	if(file!=null){
+		var fileName =file.name;
+		//获取文件类型名称
+		var filetype = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+		console.log(filetype);
+		formData.append('file', $('#file')[0].files[0]);
+	}
+		formData.append('Musicname',Musicname);
+		formData.append('Musicalgenre1',Musicalgenre1);
+		formData.append('Musicalgenre2',Musicalgenre2);
+		formData.append('Musicalgenre3',Musicalgenre3);
+		formData.append('Musicalgenre4',Musicalgenre4);
+		formData.append('Musicintro',Musicintro);
+		formData.append('Singer',Singer);
+		formData.append('filetype',filetype);
+		formData.append('fileName',fileName);
+		$.ajax({
+			type:'post',
+			dataType:'json',
+			data:formData,
+			cache: false, //上传文件不需要缓存
+			url:'/addMt',
+			processData: false, // 告诉jQuery不要去处理发送的数据
+			contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+			success:function(data){
+				if(data==1){
+					layer.msg('添加成功!',{icon:1,time:1000});
+					setTimeout(function(){
+						window.parent.location.reload();
+					},1000);
+				}
+			}
+		})
+
+}
+</script>
+</body>
+</html>

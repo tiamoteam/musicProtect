@@ -32,6 +32,19 @@ public class Musictable implements Serializable {
     public Musictable() {
     }
 
+    public Musictable(int musicID, String musicname, String musicalgenre1, String musicalgenre2, String musicalgenre3, String musicalgenre4, String musicintro, String singer, Date musictime, String musicurl) {
+        MusicID = musicID;
+        Musicname = musicname;
+        Musicalgenre1 = musicalgenre1;
+        Musicalgenre2 = musicalgenre2;
+        Musicalgenre3 = musicalgenre3;
+        Musicalgenre4 = musicalgenre4;
+        Musicintro = musicintro;
+        Singer = singer;
+        Musictime = musictime;
+        Musicurl = musicurl;
+    }
+
     public String getMusicalgenre1() {
         return Musicalgenre1;
     }
