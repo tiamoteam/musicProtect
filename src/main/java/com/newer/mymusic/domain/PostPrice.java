@@ -14,8 +14,8 @@ public class PostPrice implements Serializable {
     private String  PP5;
     private String  PP6;
     private String  PP7;
-    private String  PP8;
     private String  PP9;
+    private String  PP8;
     private String X;	//备用1
     private int Y;		//备用2
     private int Z;		//备用3

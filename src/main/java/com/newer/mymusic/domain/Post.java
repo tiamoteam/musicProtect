@@ -20,11 +20,12 @@ public class Post implements Serializable {
     private String X;	//备用1
     private int Y;		//备用2
     private int Z;		//备用3
+    private String name;
 
     public Post() {
     }
 
-    public Post(int postid, String posttitle, String postContent, String postType, String userid, Data time, String x, int y, int z) {
+    public Post(int postid, String posttitle, String postContent, String postType, String userid, Data time, String x, int y, int z, String name) {
         Postid = postid;
         Posttitle = posttitle;
         PostContent = postContent;
@@ -34,6 +35,15 @@ public class Post implements Serializable {
         X = x;
         Y = y;
         Z = z;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPostid() {
