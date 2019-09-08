@@ -32,27 +32,43 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">歌曲流派：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre1" name="">
+				<span class="select-box">
+				<select name="" class="select" id="Musicalgenre1">
+					<option value="0">--选择流派--</option>
+				</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre2" name="">
+				<span class="select-box">
+				<select name="" class="select" id="Musicalgenre2">
+					<option value="0">--选择流派--</option>
+				</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre3" name="">
+				<span class="select-box">
+				<select name="" class="select" id="Musicalgenre3">
+					<option value="0">--选择流派--</option>
+				</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>歌曲流派：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="Musicalgenre4" name="">
+				<span class="select-box">
+				<select name="" class="select" id="Musicalgenre4">
+					<option value="0">--选择流派--</option>
+				</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
@@ -95,6 +111,25 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script> 
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script> 
 <script type="text/javascript">
+	$(()=>{
+		$.ajax({
+			type:"get",
+			url:"selectLP",
+			dataType: "json",
+			success:function(data){
+				if(data!=1){
+					var app = `<option value="0">--选择流派--</option>`;
+					$.each(data,function(i,obj){
+						app += `<option value="${obj.musicalgenre}">${obj.musicalgenre}</option>`;
+					});
+					$("#Musicalgenre1").html(app);
+					$("#Musicalgenre2").html(app);
+					$("#Musicalgenre3").html(app);
+					$("#Musicalgenre4").html(app);
+				}
+			}
+		})
+	})
 function article_save_submit(){
 	var Musicname = $("#Musicname").val();
 	var Musicalgenre1 = $("#Musicalgenre1").val();
