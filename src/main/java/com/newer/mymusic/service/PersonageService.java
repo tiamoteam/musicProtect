@@ -5,6 +5,8 @@ import com.newer.mymusic.mapper.PersonageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonageService {
     @Autowired
@@ -26,5 +28,13 @@ public class PersonageService {
 
     public int updPersonage(Personage updPersonage){
         return personageMapper.updPersonage(updPersonage);
+    }
+
+    public List<Personage> selectAll(){
+        return personageMapper.selectAll();
+    }
+
+    public int delById(int userid){
+        return personageMapper.delById(userid);
     }
 }

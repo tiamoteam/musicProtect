@@ -22,17 +22,18 @@
 <title>用户管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>博客管理<span class="c-gray en">&gt;</span> 博客列表</nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理<span class="c-gray en">&gt;</span> 用户信息</nav>
 <div class="page-container">
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-hover table-bg table-sort" id="table_id">
 			<thead>
 			<tr class="text-c">
-				<th width="20">博客标题</th>
-				<th width="40">上传用户</th>
-				<th width="40">上传时间</th>
-				<th width="50">博客类型</th>
-				<th width="40">审核状态</th>
+				<th width="20">用户名</th>
+				<th width="40">密码</th>
+				<th width="40">电话</th>
+				<th width="40">邮箱</th>
+				<th width="40">地址</th>
+				<th width="40">个性签名</th>
 				<th width="70">操作</th>
 			</tr>
 			</thead>
@@ -78,55 +79,45 @@
 
 
 			},
-			ajax : "selectps",
+			ajax : "/selectUs",
 
 			columns: [
 				{
-					"data": "posttitle",
-					"name" : "posttitle",
+					"data": "name",
+					"name" : "name",
 					"sDefaultContent":"",  //默认空字符串
-					"sClass": "text-center",
-					'render': function (data, type,row,meta) {
-						var roleId = row.x
-						var html = `<a href="javascript:;" onclick="admin_edit('博客详细信息','admin-add1.html','${row.postid}','800','500')">${row.posttitle}</a>`;
-						return html
-					}
+					"sClass": "text-center"
 				},
 				{
-					"orderable" : true,
-					"data": "name",
+					"orderable" : false,
+					"data": "userpwd",
 					'sClass': "text-center"
 				},
 				{
-					"orderable" : true,
-					"data": "Time",
+					"orderable" : false,
+					"data": "phone",
 					'sClass': "text-center"
 				}	,
 				{
-					"orderable" : true,
-					"data": "postType",
+					"orderable" : false,
+					"data": "email",
 					'sClass': "text-center"
 				}  ,
 				{
 					"orderable" : true,
-					"data": "x",
-					'sClass': "text-center",
-					'render': function (data, type,row,meta){
-						var roleId = row.x
-						var html = ``;
-						if(roleId=="审核通过"){
-							html = `<span class="label label-success radius">审核通过</span>`
-						}else{
-							html = `<span class="label label-default radius">审核未通过</span>`
-						}
-
-						return html
-					}
-				},{
+					"data": "address",
+					'sClass': "text-center"
+				}  ,
+				{
+					"orderable" : false,
+					"data": "personalSignature",
+					'sClass': "text-center"
+				}  ,
+				{
 					"targets":6,
 					"render": function(data, type, row, meta) {
 						var htmls1=``;
-						htmls1=`<td class="td-manage"><a title="删除" href="javascript:;" onclick="admin_del(this,'${row.postid}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>`;
+						htmls1=`<a title="删除" href="javascript:;" onclick="admin_del(this,'${row.userid}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>`;
 						//return ''
 						return htmls1
 					}
@@ -143,20 +134,20 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-
-	/*博客-删除*/
+	/*管理员-删除*/
 	function admin_del(obj,id){
 		layer.confirm('确认要删除吗？',function(index){
+			console.log(id);
 			$.ajax({
-				type: 'delete',
-				url: 'delByps',
-				data:{postid:id},
-				dataType: 'json',
+				type: "delete",
+				url: "delByus",
+				data:{userid:id},
+				dataType: "json",
 				success: function(data){
 					if(data==1){
 						layer.msg('删除成功',{icon:1,time:1000});
 						setTimeout(function(){
-							location.href="admin-list.html";
+							location.href="article-list.html";
 						},1000);
 					}else{
 						layer.msg('操作失败!',{icon:2,time:1000});
@@ -166,12 +157,6 @@
 		});
 	}
 
-	/*管理员-编辑*/
-	function admin_edit(title,url,id,w,h){
-		console.log(id);
-		localStorage.setItem("id",id);
-		layer_show(title,url,w,h);
-	}
 
 </script>
 </body>

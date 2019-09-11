@@ -1,11 +1,10 @@
 package com.newer.mymusic.mapper;
 
 import com.newer.mymusic.domain.Personage;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface PersonageMapper {
@@ -30,4 +29,11 @@ public interface PersonageMapper {
             "PersonalSignature=#{personalSignature} WHERE UserName=#{UserName}")
     public  int  updPersonage(Personage updPersonage);
 
+    //查看所有的用户信息
+    @Select("select * from personage")
+    public List<Personage> selectAll();
+
+    //根据用户id删除用户信息
+    @Delete("delete from personage where userid = #{userid}")
+    public int delById(@Param("userid") int userid);
 }

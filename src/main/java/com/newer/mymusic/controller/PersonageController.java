@@ -7,6 +7,8 @@ import com.newer.mymusic.mapper.MusictableMapper;
 import com.newer.mymusic.service.PersonageService;
 import com.newer.mymusic.util.JwtTokenUtil;
 import io.jsonwebtoken.Claims;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -104,6 +107,29 @@ public class PersonageController {
     }else {
         return new ResponseEntity<>(m4, HttpStatus.OK);
     }
+    }
+
+    @GetMapping("/selectUs")
+    public ResponseEntity<?> selectAll(){
+        HashMap<String,List<Personage>> map = new HashMap<>();
+        List<Personage> personageList = personageService.selectAll();
+        if(personageList!=null){
+            for(Personage  p : personageList){
+                p.setUserpwd("******");
+                StringBuilder sb = new StringBuilder(p.getPhone());
+                String a = String.valueOf(sb.replace(3,7,"****"));
+                p.setPhone(a);
+            }
+            map.put("data",personageList);
+            return new ResponseEntity<>(map,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(2,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delByus")
+    public ResponseEntity<?> delById(int userid){
+            int a = personageService.delById(userid);
+            return  new ResponseEntity<>(a,HttpStatus.OK);
     }
 
 }

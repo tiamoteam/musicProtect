@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.Date;
 
 //帖子表
 public class Post implements Serializable {
@@ -16,16 +17,17 @@ public class Post implements Serializable {
     private String  Userid;		//发帖人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Data Time;				//发帖时间
+    private Date Time;				//发帖时间
     private String X;	//备用1
     private int Y;		//备用2
     private int Z;		//备用3
     private String name;
+    private String Pp1;
 
     public Post() {
     }
 
-    public Post(int postid, String posttitle, String postContent, String postType, String userid, Data time, String x, int y, int z, String name) {
+    public Post(int postid, String posttitle, String postContent, String postType, String userid, Date time, String x, int y, int z, String name, String pp1) {
         Postid = postid;
         Posttitle = posttitle;
         PostContent = postContent;
@@ -36,6 +38,36 @@ public class Post implements Serializable {
         Y = y;
         Z = z;
         this.name = name;
+        Pp1 = pp1;
+    }
+
+    public Post(int postid, String posttitle, String postContent, String postType, String userid, Date time, String x, int y, int z, String name) {
+        Postid = postid;
+        Posttitle = posttitle;
+        PostContent = postContent;
+        PostType = postType;
+        Userid = userid;
+        Time = time;
+        X = x;
+        Y = y;
+        Z = z;
+        this.name = name;
+    }
+
+    public Date getTime() {
+        return Time;
+    }
+
+    public void setTime(Date time) {
+        Time = time;
+    }
+
+    public String getPp1() {
+        return Pp1;
+    }
+
+    public void setPp1(String pp1) {
+        Pp1 = pp1;
     }
 
     public String getName() {
@@ -86,13 +118,7 @@ public class Post implements Serializable {
         Userid = userid;
     }
 
-    public Data getTime() {
-        return Time;
-    }
 
-    public void setTime(Data time) {
-        Time = time;
-    }
 
     public String getX() {
         return X;

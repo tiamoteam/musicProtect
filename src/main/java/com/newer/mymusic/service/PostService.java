@@ -18,7 +18,27 @@ public class PostService implements PostMapper {
     }
 
     @Override
+    public List<Post> selectwAll() {
+        return postMapper.selectwAll();
+    }
+
+    @Override
     public int delById(int Postid) {
         return postMapper.delById(Postid);
+    }
+
+    @Override
+    public Post selectBypid(int postid) {
+        return postMapper.selectBypid(postid);
+    }
+
+    @Override
+    public int updatetg(int postid) {
+        return postMapper.updatetg(postid);
+    }
+
+    @Override
+    public int updatewtg(int postid) {
+        return postMapper.updatewtg(postid);
     }
 }
