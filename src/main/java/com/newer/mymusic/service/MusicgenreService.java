@@ -15,4 +15,8 @@ public class MusicgenreService implements MusicgenreMapper {
     public List<Musicgenre> selectAll() {
         return musicgenreMapper.selectAll();
     }
+
+    public List<Musicgenre> liupaiAll() {
+        return musicgenreMapper.liupaiAll();
+    }
 }

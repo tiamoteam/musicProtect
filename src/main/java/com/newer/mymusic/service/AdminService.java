@@ -12,7 +12,7 @@ public class AdminService {
     @Autowired
     private AdminMapper  adminMapper;
 
-    public Admin getAdmin(String aname,int pwd) {
+    public Admin getAdmin(String aname,String pwd) {
         return adminMapper.getAdmin(aname, pwd);
     }
 

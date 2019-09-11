@@ -11,7 +11,7 @@ public interface AdminMapper {
 
     //登录
     @Select("select *from admin where aname=#{aname} and pwd=#{pwd}")
-    public Admin getAdmin(@Param("aname") String aname, @Param("pwd") int pwd);
+    public Admin getAdmin(@Param("aname") String aname, @Param("pwd") String pwd);
 
      //添加
     @Insert("insert into admin(aname,pwd,quanxian,dltime) value(#{aname},#{pwd},#{quanxian},SYSDATE())")

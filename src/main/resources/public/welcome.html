@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -24,79 +25,174 @@
 <body>
 <div class="page-container">
 	<p class="f-20 text-success">欢迎使用mymusic后台服务系统</p>
-	<p>上次登录时间：2014-6-14 11:19:55</p>
-	<table class="table table-border table-bordered table-bg">
+	<table class="table table-border table-bordered table-bg" id="table_id">
 		<thead>
-			<tr>
-				<th colspan="7" scope="col">信息统计</th>
-			</tr>
 			<tr class="text-c">
-				<th>统计</th>
-				<th>资讯库</th>
-				<th>图片库</th>
-				<th>产品库</th>
-				<th>用户</th>
-				<th>管理员</th>
+				<th width="200"  >ID</th>
+				<th width="200">歌曲流派</th>
+				<th width="200" >流派图片</th>
+				<th width="200" >流派简介</th>
+				<th width="200">该流派总计播放次数</th>
+				<!--<th width="20">流派歌曲总数</th>-->
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="text-c">
-				<td>总数</td>
-				<td>92</td>
-				<td>9</td>
-				<td>0</td>
-				<td>8</td>
-				<td>20</td>
-			</tr>
-			<tr class="text-c">
-				<td>今日</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-			</tr>
-			<tr class="text-c">
-				<td>昨日</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-			</tr>
-			<tr class="text-c">
-				<td>本周</td>
-				<td>2</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-			</tr>
-			<tr class="text-c">
-				<td>本月</td>
-				<td>2</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-			</tr>
 		</tbody>
 	</table>
-	<table class="table table-border table-bordered table-bg mt-20">
-		<thead>
-			<tr>
-				<th colspan="2" scope="col">服务器信息</th>
-			</tr>
-		</thead>
-
-	</table>
+	<div id="container" style="min-width:700px;height:400px"></div>
 </div>
+<footer class="footer mt-20">
+	<div class="container">
+		<!--&copy;2017-2027 SONG.net All Rights Reserved.-->
+	</div>
+</footer>
 
+</div>
+<script src="js/jwt.js"></script>
+<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/highcharts/drilldown.js"></script>
+<script type="text/javascript" src="js/highcharts/highcharts-zh_CN.js"></script>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
 
-<script>
+    $(document).ready( function () {
+        $('#table_id').DataTable({
+            language : {
+                "lengthMenu" : '每页显示<select>' + '<option value="10">10</option>'
+                + '<option value="20">20</option>'
+                + '<option value="30">30</option>'
+                + '<option value="40">40</option>'
+                + '<option value="50">50</option>' + '</select>条',
+                "paginate" : {
+                    "first" : "首页",
+                    "last" : "尾页",
+                    "previous" : "上一页",
+                    "next" : "下一页"
+                },
+                "processing" : "加载中...",  //DataTables载入数据时，是否显示‘进度’提示
+                "emptyTable" : "暂无数据",
+                "info" : "共 _PAGES_ 页  _TOTAL_ 条数据  ",
+                "infoEmpty" : "暂无数据",
+                "emptyTable" : "暂无要处理的数据...",  //表格中无数据
+                "search": "搜索:",
+                "infoFiltered" : " ―― 从  _MAX_ 条数据中筛选",
+                "zeroRecords":    "没有找到记录",
 
+
+            },
+            ajax : "/liupaiAll",
+
+            columns: [
+                {
+                    "data": "genreID",
+                    "name" : "genreID",
+                    "sDefaultContent":"",  //默认空字符串
+                    "sClass": "text-center"
+                },
+                {
+                    "orderable" : true,
+                    "data": "musicalgenre",
+                    'sClass': "text-center"
+                },
+                {
+                    "orderable" : true,
+                    "data": "genreportrait",
+                    'sClass': "text-center"
+                }	,
+                {
+                    "orderable" : true,
+                    "data": "genreintro",
+                    'sClass': "text-center"
+                }  ,
+                {
+                    "orderable" : true,
+                    "data": "genrenum",
+                    'sClass': "text-center",
+                    },
+            ],
+        });
+    } );
+
+    /*
+        参数解释：
+        title	标题
+        url		请求的url
+        id		需要操作的数据id
+        w		弹出层宽度（缺省调默认值）
+        h		弹出层高度（缺省调默认值）
+    */
+
+  $(()=>{
+        query();
+    })
+
+    //各流派总计被播放次数
+    function query(){
+        $.ajax({
+            type:"get",
+            url:"drawPic",
+            dataType:"json",
+            headers:createAuthorizationTokenHeader(),
+            success:function(data){
+                if(data){
+                    drawPic(data)
+                }
+            }
+        })
+    }
+    function drawPic(data){
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '各流派总计被播放次数'
+            },
+            subtitle: {
+                text: '详细信息'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: '播放次数'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}次'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}次</b><br/>'
+            },
+            series: [{
+                name: '流派:',
+                colorByPoint: true,
+                data: data
+            }],
+            drilldown: {
+                series: [{
+                    name: '全部流派',
+                    id: '0',
+                    data: data
+                }]
+            }
+	   });
+    }
 </script>
 
 </body>
