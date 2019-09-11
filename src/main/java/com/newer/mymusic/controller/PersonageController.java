@@ -116,9 +116,9 @@ public class PersonageController {
         if(personageList!=null){
             for(Personage  p : personageList){
                 p.setUserpwd("******");
-                StringBuilder sb = new StringBuilder(p.getPhone());
+               /* StringBuilder sb = new StringBuilder(p.getPhone());
                 String a = String.valueOf(sb.replace(3,7,"****"));
-                p.setPhone(a);
+                p.setPhone(a);*/
             }
             map.put("data",personageList);
             return new ResponseEntity<>(map,HttpStatus.OK);

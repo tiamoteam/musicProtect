@@ -10,7 +10,7 @@ public class Admin implements Serializable {
     private static final long serialVersionUID = 6731319246247589677L;
     private int id;  //管理员id
     private String aname; //管理员账号
-    private int pwd; //管理员密码l
+    private String pwd; //管理员密码l
     private String quanxian;//权限等级
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -19,7 +19,7 @@ public class Admin implements Serializable {
     public Admin() {
     }
 
-    public Admin(int id, String aname, int pwd, String quanxian, Date dltime, String enable) {
+    public Admin(int id, String aname, String pwd, String quanxian, Date dltime, String enable) {
         this.id = id;
         this.aname = aname;
         this.pwd = pwd;
@@ -44,11 +44,11 @@ public class Admin implements Serializable {
         this.aname = aname;
     }
 
-    public int getPwd() {
+    public String getPwd() {
         return pwd;
     }
 
-    public void setPwd(int pwd) {
+    public void setPwd(String pwd) {
         this.pwd = pwd;
     }
 
