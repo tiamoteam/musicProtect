@@ -28,15 +28,15 @@
         </header>
         <form action="index.html">
           <div class="form-group">
-            <input type="text" placeholder="Name" class="form-control rounded input-lg text-center no-border" id="aname">
+            <input type="text" placeholder="Name" class="form-control rounded input-lg text-center no-border" id="aname" onblur="yz1()">
             <p id="p1" style="color:red"></p>
           </div>
           <div class="form-group">
-            <input type="email" placeholder="Email" class="form-control rounded input-lg text-center no-border"  id="email">
+            <input type="email" placeholder="Email" class="form-control rounded input-lg text-center no-border"  id="email" onblur="yz()">
             <p id="p2" style="color:red"></p>
           </div>
           <div class="form-group">
-             <input type="password" placeholder="Password" class="form-control rounded input-lg text-center no-border" id="pwd">
+             <input type="password" placeholder="Password" class="form-control rounded input-lg text-center no-border" id="pwd" onblur="yz2()">
             <p id="p3" style="color:red"></p>
           </div>
           <div class="checkbox i-checks m-b">
@@ -120,6 +120,42 @@
             })
         })
     })
+
+    function yz(){
+        var email=$("#email").val();
+        var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+        if(reg.test(email)){
+            $("#p2").attr("style","color:fuchsia")
+            $("#p2").html("可以使用!");//
+        }else{
+            $("#p2").attr("style","color:red")
+            $("#p2").html("邮箱格式不正确，请重新输入");
+        }
+    }
+
+    function yz1(){
+        var UserName=$("#aname").val();
+        var reg = /^[a-zA-Z]\w{4,20}$/;
+        if(reg.test(UserName)){
+            $("#p1").attr("style","color:fuchsia")
+            $("#p1").html("可以使用!");//
+        }else{
+            $("#p1").attr("style","color:red")
+            $("#p1").html("名字至少由3个字母组成，请重新输入");
+        }
+    }
+
+    function yz2(){
+        var Userpwd=$("#pwd").val();
+        var reg = /^[a-zA-Z0-9]\w{6,}$/;
+        if(reg.test(Userpwd)){
+            $("#p3").attr("style","color:fuchsia")
+            $("#p3").html("可以使用!");//
+        }else{
+            $("#p3").attr("style","color:red")
+            $("#p3").html("密码不得少于6位");
+        }
+    }
 </script>
 
 </html>

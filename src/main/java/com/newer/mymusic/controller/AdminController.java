@@ -26,23 +26,22 @@ public class AdminController {
 
     //登录接口
     @PostMapping("/login1")
-    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("password")int pwd){
+    public ResponseEntity<?> login(@RequestParam("aname")String aname, @RequestParam("password")String pwd){
         int msg = 0;
         Admin a = adminService.getAdmin(aname,pwd);
- if(a.getEnable().equals("已启用")) {
-    if (a != null) {
-        String token = jwtTokenUtil.createJwt(aname);
-        System.out.println(token);
-        return new ResponseEntity<>(token, HttpStatus.OK);
-    } else {
-        return new ResponseEntity<>(msg, HttpStatus.OK);
+        if (a!= null) {
+            if(a.getEnable().equals("已启用")) {
+                String token = jwtTokenUtil.createJwt(aname);
+                System.out.println(token);
+                return new ResponseEntity<>(token, HttpStatus.OK);
+            } else {
+                msg=1;
+                return new ResponseEntity<>(msg, HttpStatus.OK);
+            }
+        }else{
+            return new ResponseEntity<>(msg, HttpStatus.OK);
+        }
     }
-         }else{
-          msg=1;
-     return new ResponseEntity<>(msg, HttpStatus.OK);
-         }
-    }
-
     //添加管理员的接口
     @PostMapping("/addAdmin")
     public ResponseEntity<?> addAdmin(Admin admin){
@@ -60,7 +59,7 @@ public class AdminController {
             , @RequestParam("pwd1")String pwd1, @RequestParam("pwd2")String pwd2) {
         int msg;
         Admin a = adminService.selectById(aname);
-        if (Integer.parseInt(pwd)==(a.getPwd())) {
+        if (pwd.equals(a.getPwd())) {
 
             if (pwd2.equals(pwd1)) {
                 msg=1;

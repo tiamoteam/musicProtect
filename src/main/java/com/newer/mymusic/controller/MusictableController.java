@@ -57,7 +57,7 @@ public class MusictableController {
         if (!file.isEmpty()) {
             try {
                 // 文件保存路径
-                filePath = "D:/IdeaProjects/musicProtect/src/main/resources/static/music/"+fileName;
+                filePath = "E:/ssm0726/musicProtect/src/main/resources/static/music/"+fileName;
                 System.out.println(filePath);
                 // 转存文件
                 file.transferTo(new File(filePath));

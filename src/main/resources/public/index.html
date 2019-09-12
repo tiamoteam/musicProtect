@@ -92,7 +92,7 @@
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="images/a0.png" alt="...">
               </span>
-              <span id="UserName">
+              <span id="userName">
                 <b class="caret"></b>
               </span>
             </a>
@@ -115,7 +115,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="signin.html" data-toggle="ajaxModal" onclick="logout">注销</a>
+                <a href="signin.html" data-toggle="ajaxModal" >注销</a>
               </li>
             </ul>
           </li>
@@ -1339,6 +1339,7 @@
   <script src="js/jwt.js"></script>
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/app.plugin.js"></script>
+  <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
@@ -1356,8 +1357,8 @@
             headers:createAuthorizationTokenHeader(),
             success:function(data){
                 if(data){
-                    //console.log(data);
-                    $("#UserName").html(data.name);
+                    console.log(data);
+                    $("#userName").html(data.name);
                 }
             }
         })
