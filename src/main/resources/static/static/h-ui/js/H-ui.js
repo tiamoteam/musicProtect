@@ -6633,7 +6633,7 @@ function($) {
 		/*************************************************
 					INSTANCE PROPERTIES/METHODS
 		- Any methods bound to the prototype are considered
-		part of the plugin's `public` interface
+		part of the plugin's `temp` interface
 		**************************************************/
 		Slider.prototype = {
 			_init: function() {},
@@ -6825,7 +6825,7 @@ function($) {
 
 			/******************************+
 						HELPERS
-			- Any method that is not part of the public interface.
+			- Any method that is not part of the temp interface.
 			- Place it underneath this comment block and write its signature like so:
 			  					_fnName : function() {...}
 			********************************/
